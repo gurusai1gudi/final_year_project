@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Enter Symptoms</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet">
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+   .bgded {
+  background-image: url('{% static "images/02.webp" %}');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      background: rgba(0,0,0,0.65);
+      padding: 30px;
+      border-radius: 10px;
+      width: 380px;
+    }
+
+    .input100 {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .btn {
+      background: #2563eb;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    h2, h3 {
+      color: white;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+<div class="bgded">
+
+<form action="{% url 'output' %}" method="post" novalidate>
+{% csrf_token %}
+
+<h2>Enter Your Symptoms</h2>
+
+<!-- BASIC INFO -->
+<input class="input100" type="number" name="age" placeholder="Age" required>
+
+<select class="input100" name="gender" required>
+  <option value="">Select Gender</option>
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+  <option value="other">Other</option>
+</select>
+
+<!-- SYMPTOMS DROPDOWN -->
+<select id="symptom-list" class="input100" onchange="handleSymptomSelect()">
+  <option value="">Select a symptom</option>
+
+  <!-- SPECIAL -->
+  <option value="fever">Fever</option>
+  <option value="blood sample">Blood Sample</option>
+
+  <!-- ALL NORMAL SYMPTOMS -->
+  <option value="itching">Itching</option>
+  <option value="skin_rash">Skin Rash</option>
+  <option value="nodal_skin_eruptions">Nodal Skin Eruptions</option>
+  <option value="continuous_sneezing">Continuous Sneezing</option>
+  <option value="shivering">Shivering</option>
+  <option value="chills">Chills</option>
+  <option value="joint_pain">Joint Pain</option>
+  <option value="stomach_pain">Stomach Pain</option>
+  <option value="acidity">Acidity</option>
+  <option value="ulcers_on_tongue">Ulcers on Tongue</option>
+  <option value="muscle_wasting">Muscle Wasting</option>
+  <option value="vomiting">Vomiting</option>
+  <option value="burning_micturition">Burning Micturition</option>
+  <option value="spotting_urination">Spotting Urination</option>
+  <option value="fatigue">Fatigue</option>
+  <option value="weight_gain">Weight Gain</option>
+  <option value="anxiety">Anxiety</option>
+  <option value="cold_hands_and_feets">Cold Hands and Feet</option>
+  <option value="mood_swings">Mood Swings</option>
+  <option value="weight_loss">Weight Loss</option>
+  <option value="restlessness">Restlessness</option>
+  <option value="lethargy">Lethargy</option>
+  <option value="patches_in_throat">Patches in Throat</option>
+  <option value="cough">Cough</option>
+  <option value="high_fever">High Fever</option>
+  <option value="headache">Headache</option>
+  <option value="loss_of_appetite">Loss of Appetite</option>
+  <option value="pain_behind_the_eyes">Pain Behind the Eyes</option>
+  <option value="back_pain">Back Pain</option>
+  <option value="abdominal_pain">Abdominal Pain</option>
+  <option value="diarrhoea">Diarrhoea</option>
+  <option value="mild_fever">Mild Fever</option>
+  <option value="yellowish_skin">Yellowish Skin</option>
+  <option value="dark_urine">Dark Urine</option>
+  <option value="nausea">Nausea</option>
+  <option value="muscle_pain">Muscle Pain</option>
+  <option value="red_spots_over_body">Red Spots Over Body</option>
+  <option value="belly_pain">Belly Pain</option>
+  <option value="watering_from_eyes">Watering From Eyes</option>
+</select>
+
+<input class="input100" type="text" id="symptoms" name="symptoms"
+       placeholder="Selected symptoms (comma separated)">
+
+<input type="hidden" name="mode" id="mode">
+
+<!-- FEVER DETAILS -->
+<div id="feverBox" style="display:none;">
+  <h3>Fever Details</h3>
+
+  <!-- BMI -->
+  <input class="input100" type="number" step="0.1"
+         name="bmi" placeholder="BMI" required>
+
+  <!-- Smoking -->
+  <select class="input100" name="smoking_history" required>
+    <option value="">Smoking History</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+
+  <!-- Alcohol -->
+  <select class="input100" name="alcohol_consumption" required>
+    <option value="">Alcohol Consumption</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+
+  <!-- Headache -->
+  <select class="input100" name="headache" required>
+    <option value="">Headache</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+
+  <!-- Body Ache -->
+  <select class="input100" name="body_ache" required>
+    <option value="">Body Ache</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+
+  <!-- Fatigue -->
+  <select class="input100" name="fatigue" required>
+    <option value="">Fatigue</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+
+  <!-- Fever Severity -->
+  <select class="input100" name="fever_severity" required>
+    <option value="">Fever Severity</option>
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+</div>
+
+
+<!-- BLOOD SAMPLE DETAILS -->
+<div id="bloodBox" style="display:none;">
+  <h3>Blood Sample Details</h3>
+
+  <select class="input100" name="fever">
+    <option value="">Fever</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+
+ <input class="input100" type="number" step="0.1" name="temperature" placeholder="Temperature (°C)">
+  <input class="input100" type="number" name="pulse" placeholder="Pulse">
+  <input class="input100" type="number" name="bp_sys" placeholder="BP Systolic">
+  <input class="input100" type="number" name="bp_dia" placeholder="BP Diastolic">
+  <input class="input100" type="number" name="spo2" placeholder="SpO2">
+
+  <input class="input100" type="number" step="0.1" name="hemoglobin" placeholder="Hemoglobin">
+  <input class="input100" type="number" name="wbc" placeholder="WBC">
+  <input class="input100" type="number" name="platelets" placeholder="Platelets">
+  <input class="input100" type="number" step="0.1" name="rbc" placeholder="RBC">
+  <input class="input100" type="number" name="esr" placeholder="ESR">
+
+  <select class="input100" name="crp">
+    <option value="">CRP</option>
+    <option value="normal">Normal</option>
+    <option value="high">High</option>
+  </select>
+
+  <select class="input100" name="dengue">
+    <option value="">Dengue NS1</option>
+    <option value="positive">Positive</option>
+    <option value="negative">Negative</option>
+  </select>
+
+  <select class="input100" name="malaria">
+    <option value="">Malaria Parasite</option>
+    <option value="positive">Positive</option>
+    <option value="negative">Negative</option>
+  </select>
+
+  <select class="input100" name="widal">
+    <option value="">Widal Test</option>
+    <option value="positive">Positive</option>
+    <option value="negative">Negative</option>
+  </select>
+</div>
+    <button type="submit" class="btn">Predict Disease</button>
+
+</form>
+</div>
+
+<script>
+function handleSymptomSelect() {
+  const select = document.getElementById("symptom-list");
+  const value = select.value;
+  const box = document.getElementById("symptoms");
+
+  document.getElementById("feverBox").style.display = "none";
+  document.getElementById("bloodBox").style.display = "none";
+  document.getElementById("mode").value = "";
+
+  if (value === "fever") {
+    document.getElementById("feverBox").style.display = "block";
+    document.getElementById("mode").value = "fever";
+  }
+  else if (value === "blood sample") {
+    document.getElementById("bloodBox").style.display = "block";
+    document.getElementById("mode").value = "blood";
+  }
+  else if (value !== "") {
+    box.value += box.value ? ", " + value : value;
+  }
+
+  select.selectedIndex = 0;
+}
+</script>
+
+</body>
+</html>

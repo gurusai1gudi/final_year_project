@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-image: url('{% static "images/03.avif" %}');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.4);
+            max-width: 900px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        h2, h3 {
+            color: #1e3a8a;
+            font-weight: bold;
+        }
+
+        ul {
+            text-align: left;
+        }
+
+        .badge-mode {
+            font-size: 15px;
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .normal { background: #2563eb; color: white; }
+        .fever  { background: #dc2626; color: white; }
+        .blood  { background: #7c2d12; color: white; }
+
+        .btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= HEADER ================= -->
+    <div class="text-center mb-4">
+        <h2>🧠 Medical Prediction Result</h2>
+
+        {% if mode == "normal" %}
+            <span class="badge badge-mode normal">Symptom Based Diagnosis</span>
+        {% elif mode == "fever" %}
+            <span class="badge badge-mode fever">Fever Analysis</span>
+        {% elif mode == "blood" %}
+            <span class="badge badge-mode blood">Blood Sample Analysis</span>
+        {% endif %}
+    </div>
+
+    <hr>
+
+    <!-- ================================================= -->
+    <!-- 🧠 NORMAL DISEASE MODEL OUTPUT -->
+    <!-- ================================================= -->
+    {% if mode == "normal" %}
+        <h3>🦠 Predicted Disease</h3>
+        <p class="lead"><strong>{{ predicted_disease }}</strong></p>
+
+        <h4>📖 Description</h4>
+        <p>{{ description }}</p>
+
+        <h4>⚠️ Precautions</h4>
+        <ul>
+            {% for p in precautions %}
+                <li>{{ p }}</li>
+            {% endfor %}
+        </ul>
+
+        <h4>💊 Suggested Medicines</h4>
+        <ul>
+            {% for m in medications %}
+                <li>{{ m }}</li>
+            {% endfor %}
+        </ul>
+
+        <h4>🥗 Recommended Diet</h4>
+        <ul>
+            {% for d in diet %}
+                <li>{{ d }}</li>
+            {% endfor %}
+        </ul>
+
+        <h4>🏃 Recommended Workout</h4>
+        <ul>
+            {% for w in workout %}
+                <li>{{ w }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- ================================================= -->
+    <!-- 🔥 FEVER MODEL OUTPUT -->
+    <!-- ================================================= -->
+    {% if mode == "fever" %}
+    <h3>💊 Recommended Medicine</h3>
+    <p class="lead text-success">
+        <strong>{{ predicted_disease }}</strong>
+    </p>
+
+    <h4>📖 Description</h4>
+    <p>{{ description }}</p>
+
+    <div class="alert alert-warning mt-3">
+        <strong>Note:</strong> This result is based on fever parameters.
+    </div>
+{% endif %}
+
+
+
+    <!-- ================================================= -->
+    <!-- 🩸 BLOOD SAMPLE MODEL OUTPUT -->
+    <!-- ================================================= -->
+    {% if mode == "blood" %}
+        <h3>🩸 Blood Sample Diagnosis</h3>
+        <p class="lead text-dark"><strong>{{ predicted_disease }}</strong></p>
+
+        <h4>📖 Description</h4>
+        <p>{{ description }}</p>
+
+        <div class="alert alert-danger mt-3">
+            <strong>Warning:</strong> This prediction is based on laboratory blood parameters.
+        </div>
+    {% endif %}
+
+    <!-- ================= FOOTER BUTTONS ================= -->
+    <div class="text-center mt-4">
+        <a href="{% url 'input' %}" class="btn btn-primary">⬅ Go Back</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary">🏠 Home</a>
+    </div>
+
+</div>
+
+</body>
+</html>
