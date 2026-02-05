@@ -64,4 +64,4 @@ model.fit(X_train, y_train)
 pickle.dump(model, open(os.path.join(BASE_DIR, "FRONTEND/fever_model.pkl"), "wb"))
 pickle.dump(le, open(os.path.join(BASE_DIR, "FRONTEND/medicine_encoder.pkl"), "wb"))
 
-print("✅ Fever → Medicine model trained successfully")
+print(" Fever → Medicine model trained successfully")
