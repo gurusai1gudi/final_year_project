@@ -9,9 +9,9 @@ from django.conf import settings
 import os, pickle
 
 
-# =====================================================
+
 # PATH SETUP
-# =====================================================
+
 FRONTEND_DIR = settings.BASE_DIR
 PROJECT_ROOT = os.path.abspath(os.path.join(FRONTEND_DIR, ".."))
 DATASET_DIR = os.path.join(PROJECT_ROOT, "DATASET")
@@ -19,9 +19,9 @@ DATASET_DIR = os.path.join(PROJECT_ROOT, "DATASET")
 BLOOD_MODEL_PATH = os.path.join(FRONTEND_DIR, "blood_disease_model.pkl")
 BLOOD_ENCODER_PATH = os.path.join(FRONTEND_DIR, "blood_disease_encoder.pkl")
 
-# =====================================================
+
 # LOAD MAIN DISEASE MODEL
-# =====================================================
+
 _native_candidates = [
     os.path.join(FRONTEND_DIR, "xgboost.json"),
     os.path.join(FRONTEND_DIR, "xgboost.model"),
@@ -53,18 +53,18 @@ if _native_path:
 else:
     xgb_model = pickle.load(open(os.path.join(DATASET_DIR, "xgboost.pkl"), "rb"))
 
-# =====================================================
+
 # LOAD SUPPORT DATA
-# =====================================================
+
 description = pd.read_csv(os.path.join(DATASET_DIR, "description.csv"))
 precautions = pd.read_csv(os.path.join(DATASET_DIR, "precautions_df.csv"))
 medications = pd.read_csv(os.path.join(DATASET_DIR, "medications.csv"))
 diets = pd.read_csv(os.path.join(DATASET_DIR, "diets.csv"))
 workout = pd.read_csv(os.path.join(DATASET_DIR, "workout_df.csv"))
 
-# =====================================================
+
 # SYMPTOM MAP
-# =====================================================
+
 _train_df = pd.read_csv(os.path.join(DATASET_DIR, "Training.csv"), nrows=0)
 feature_cols = list(_train_df.columns[:-1])
 symptoms_dict = {c.strip().replace(" ", "_"): i for i, c in enumerate(feature_cols)}
@@ -74,9 +74,9 @@ le = LabelEncoder()
 le.fit(pd.read_csv(os.path.join(DATASET_DIR, "Training.csv"))["prognosis"])
 diseases_list = {i: d for i, d in enumerate(le.classes_)}
 
-# =====================================================
+
 # HELPERS
-# =====================================================
+
 def helper(dis):
     desc = description[description["Disease"] == dis]["Description"].values[0]
     pre = precautions[precautions["Disease"] == dis].iloc[0, 1:].tolist()
@@ -109,9 +109,9 @@ def get_predicted_value(symptoms):
     vec = process_input(symptoms)
     return diseases_list[xgb_model.predict([vec])[0]]
 
-# =====================================================
+
 # VIEWS
-# =====================================================
+
 def home(request):
     return render(request, "index.html")
 
@@ -125,7 +125,7 @@ def output(request):
     mode = request.POST.get("mode")  # 🔥 FIXED
     symptoms_raw = request.POST.get("symptoms", "")
 
-    # ================= BLOOD MODE =================
+    # BLOOD
     if mode == "blood":
         blood_model = pickle.load(open(BLOOD_MODEL_PATH, "rb"))
         blood_encoder = pickle.load(open(BLOOD_ENCODER_PATH, "rb"))
@@ -157,7 +157,7 @@ def output(request):
             "description": "Predicted using blood report data"
         })
 
-    # ================= FEVER MODE =================
+    # FEVER
     if mode == "fever":
         model = pickle.load(open(os.path.join(FRONTEND_DIR, "fever_model.pkl"), "rb"))
         med_encoder = pickle.load(open(os.path.join(FRONTEND_DIR, "medicine_encoder.pkl"), "rb"))
@@ -183,7 +183,7 @@ def output(request):
             "description": "Recommended medicine based on fever condition"
         })
 
-    # ================= NORMAL MODE =================
+    # NORMAL MODE
     if symptoms_raw:
         disease = get_predicted_value(symptoms_raw)
         desc, pre, med, die, wrk = helper(disease)

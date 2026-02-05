@@ -59,7 +59,7 @@
 
     <!-- ================= HEADER ================= -->
     <div class="text-center mb-4">
-        <h2>🧠 Medical Prediction Result</h2>
+        <h2> Medical Prediction Result</h2>
 
         {% if mode == "normal" %}
             <span class="badge badge-mode normal">Symptom Based Diagnosis</span>
@@ -72,9 +72,9 @@
 
     <hr>
 
-    <!-- ================================================= -->
-    <!-- 🧠 NORMAL DISEASE MODEL OUTPUT -->
-    <!-- ================================================= -->
+
+    <!--  DISEASE MODEL OUTPUT -->
+
     {% if mode == "normal" %}
         <h3>🦠 Predicted Disease</h3>
         <p class="lead"><strong>{{ predicted_disease }}</strong></p>
@@ -111,9 +111,9 @@
         </ul>
     {% endif %}
 
-    <!-- ================================================= -->
+
     <!-- 🔥 FEVER MODEL OUTPUT -->
-    <!-- ================================================= -->
+
     {% if mode == "fever" %}
     <h3>💊 Recommended Medicine</h3>
     <p class="lead text-success">
@@ -130,9 +130,9 @@
 
 
 
-    <!-- ================================================= -->
+
     <!-- 🩸 BLOOD SAMPLE MODEL OUTPUT -->
-    <!-- ================================================= -->
+
     {% if mode == "blood" %}
         <h3>🩸 Blood Sample Diagnosis</h3>
         <p class="lead text-dark"><strong>{{ predicted_disease }}</strong></p>
