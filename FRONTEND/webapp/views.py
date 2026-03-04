@@ -19,6 +19,14 @@ DATASET_DIR = os.path.join(PROJECT_ROOT, "DATASET")
 BLOOD_MODEL_PATH = os.path.join(FRONTEND_DIR, "blood_disease_model.pkl")
 BLOOD_ENCODER_PATH = os.path.join(FRONTEND_DIR, "blood_disease_encoder.pkl")
 
+import json
+
+MEDICAL_JSON_PATH = os.path.join(PROJECT_ROOT, "medical_knowledge.json")
+if os.path.exists(MEDICAL_JSON_PATH):
+    with open(MEDICAL_JSON_PATH, "r") as f:
+        medical_knowledge = json.load(f)
+else:
+    medical_knowledge = {}
 
 # LOAD MAIN DISEASE MODEL
 
@@ -117,6 +125,14 @@ def home(request):
 
 def input(request):
     return render(request, "input.html")
+def range_to_avg(value, default=0):
+    try:
+        if "-" in value:
+            low, high = value.split("-")
+            return (float(low) + float(high)) / 2
+        return float(value)
+    except:
+        return default
 
 def output(request):
     if request.method != "POST":
@@ -131,30 +147,44 @@ def output(request):
         blood_encoder = pickle.load(open(BLOOD_ENCODER_PATH, "rb"))
 
         X = np.array([[
-            safe_float(request.POST.get("temperature")),
-            safe_int(request.POST.get("pulse")),
-            safe_int(request.POST.get("bp_sys")),
-            safe_int(request.POST.get("bp_dia")),
-            safe_int(request.POST.get("spo2")),
-            safe_float(request.POST.get("hemoglobin")),
-            safe_int(request.POST.get("wbc")),
-            safe_int(request.POST.get("platelets")),
-            safe_float(request.POST.get("rbc")),
-            safe_int(request.POST.get("esr")),
-            1 if request.POST.get("crp") == "high" else 0,
-            1 if request.POST.get("dengue") == "positive" else 0,
-            1 if request.POST.get("malaria") == "positive" else 0,
-            1 if request.POST.get("widal") == "positive" else 0,
-            0,  # padding
-            0  # padding
+            safe_int(request.POST.get("age")),  # Age
+            0 if request.POST.get("gender") == "male" else 1,
+            range_to_avg(request.POST.get("temperature", "0-0")),
+            range_to_avg(request.POST.get("pulse", "0-0")),
+            range_to_avg(request.POST.get("bp_sys", "0-0")),
+            range_to_avg(request.POST.get("bp_dia", "0-0")),
+            range_to_avg(request.POST.get("spo2", "0-0")),
+            range_to_avg(request.POST.get("hemoglobin", "0-0")),
+            range_to_avg(request.POST.get("wbc", "0-0")),
+            range_to_avg(request.POST.get("platelets", "0-0")),
+            range_to_avg(request.POST.get("rbc", "0-0")),
+            range_to_avg(request.POST.get("esr", "0-0")),
+            1 if request.POST.get("crp") == "High" else 0,
+            1 if request.POST.get("dengue") == "Positive" else 0,
+            1 if request.POST.get("malaria") == "Positive" else 0,
+            1 if request.POST.get("widal") == "Positive" else 0,
+
         ]])
 
         disease = blood_encoder.inverse_transform(blood_model.predict(X))[0]
 
+        print("Predicted Disease:", repr(disease))
+        print("Available JSON Keys:", medical_knowledge.keys())
+
+
+
+        details = medical_knowledge.get(disease, {})
+
         return render(request, "output.html", {
             "mode": "blood",
             "predicted_disease": disease,
-            "description": "Predicted using blood report data"
+            "description": details.get("detailed_description", []),
+            "cause": details.get("cause", []),
+            "treatment": details.get("treatment", []),
+            "medicines": details.get("medicines", []),
+            "diet": details.get("diet", []),
+            "workout": details.get("workout", []),
+            "precautions": details.get("precautions", [])
         })
 
     # FEVER
@@ -199,3 +229,6 @@ def output(request):
         })
 
     return render(request, "input.html")
+
+def blood_input(request):
+    return render(request, "blood_input.html")

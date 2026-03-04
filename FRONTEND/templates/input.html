@@ -16,45 +16,109 @@
       font-family: Arial, sans-serif;
     }
 
-   .bgded {
-  background-image: url('{% static "images/02.webp" %}');
+ .bgded {
+  background-image: url("{% static 'images/medicine_img2.jpg' %}");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+
   min-height: 100vh;
+
   display: flex;
   justify-content: center;
-  padding: 40px 0;
+  align-items: center;
 }
 
+   form {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: center;
-      background: rgba(0,0,0,0.65);
-      padding: 30px;
-      border-radius: 10px;
-      width: 380px;
-    }
+  width: 480px;
+  max-width: 90%;
 
-    .input100 {
-      width: 100%;
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-sizing: border-box;   /* 🔥 Important */
+}
+
+#bloodBox {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+#bloodBox h3 {
+  color: #ff4d4d;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.input100 {
+  width: 100%;
+  height: 50px;
+
+  padding: 0 18px;   /* left-right only */
+  border-radius: 12px;
+
+  border: none;
+  font-size: 15px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  box-sizing: border-box;   /* 🔥 Very important */
+}
+input,
+select {
+  height: 50px;
+}
+.input100:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+}
+input, select {
+  height: 48px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+}
     .btn {
-      background: #2563eb;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      width: 100%;
-    }
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
 
     h2, h3 {
       color: white;
@@ -86,7 +150,7 @@
   <option value="">Select a symptom</option>
 
 
-  <option value="fever">Fever</option>
+
   <option value="blood sample">Blood Sample</option>
 
 
@@ -190,50 +254,108 @@
 
 
 <!-- BLOOD SAMPLE DETAILS -->
+<!-- BLOOD SAMPLE DETAILS -->
 <div id="bloodBox" style="display:none;">
   <h3>Blood Sample Details</h3>
 
-  <select class="input100" name="fever">
+  <select class="input100" name="fever" required>
     <option value="">Fever</option>
-    <option value="yes">Yes</option>
-    <option value="no">No</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
   </select>
 
- <input class="input100" type="number" step="0.1" name="temperature" placeholder="Temperature (°C)">
-  <input class="input100" type="number" name="pulse" placeholder="Pulse">
-  <input class="input100" type="number" name="bp_sys" placeholder="BP Systolic">
-  <input class="input100" type="number" name="bp_dia" placeholder="BP Diastolic">
-  <input class="input100" type="number" name="spo2" placeholder="SpO2">
+  <select class="input100" name="temperature" required>
+    <option value="">Temperature (°C)</option>
+    <option value="36.5-37.5">36.5 - 37.5 (Normal)</option>
+    <option value="37.6-38.5">37.6 - 38.5 (Mild Fever)</option>
+    <option value="38.6-39.5">38.6 - 39.5 (High Fever)</option>
+    <option value="39.6-41.0">39.6 - 41.0 (Very High)</option>
+  </select>
 
-  <input class="input100" type="number" step="0.1" name="hemoglobin" placeholder="Hemoglobin">
-  <input class="input100" type="number" name="wbc" placeholder="WBC">
-  <input class="input100" type="number" name="platelets" placeholder="Platelets">
-  <input class="input100" type="number" step="0.1" name="rbc" placeholder="RBC">
-  <input class="input100" type="number" name="esr" placeholder="ESR">
+  <select class="input100" name="pulse" required>
+    <option value="">Pulse</option>
+    <option value="60-70">60 - 70 (Low)</option>
+    <option value="70-80">70 - 80 (Normal)</option>
+    <option value="80-90">80 - 90 (High)</option>
+  </select>
 
-  <select class="input100" name="crp">
+  <select class="input100" name="bp_sys" required>
+    <option value="">BP Systolic</option>
+    <option value="110-120">110 - 120 (Normal)</option>
+    <option value="121-130">121 - 130 (High)</option>
+  </select>
+
+  <select class="input100" name="bp_dia" required>
+    <option value="">BP Diastolic</option>
+    <option value="70-75">70 - 75 (Normal)</option>
+    <option value="76-85">76 - 85 (High)</option>
+  </select>
+
+  <select class="input100" name="spo2" required>
+    <option value="">SpO2</option>
+    <option value="96-97">96 - 97 (Normal)</option>
+    <option value="98-100">98 - 100 (Good)</option>
+  </select>
+
+  <select class="input100" name="hemoglobin" required>
+    <option value="">Hemoglobin</option>
+    <option value="6.5-9">6.5 - 9 (Low)</option>
+    <option value="9-12">9 - 12 (Medium)</option>
+    <option value="12-15.5">12 - 15.5 (Normal)</option>
+  </select>
+
+  <select class="input100" name="wbc" required>
+    <option value="">WBC</option>
+    <option value="3000-6000">3000 - 6000 (Low)</option>
+    <option value="6001-12000">6001 - 12000 (Normal)</option>
+    <option value="12001-17999">12001 - 17999 (High)</option>
+  </select>
+
+  <select class="input100" name="platelets" required>
+    <option value="">Platelets</option>
+    <option value="30052-100000">30052 - 100000 (Low)</option>
+    <option value="100001-250000">100001 - 250000 (Normal)</option>
+    <option value="250001-349978">250001 - 349978 (High)</option>
+  </select>
+
+  <select class="input100" name="rbc" required>
+    <option value="">RBC</option>
+    <option value="2.8-4">2.8 - 4 (Low)</option>
+    <option value="4.1-5">4.1 - 5 (Normal)</option>
+    <option value="5.1-5.8">5.1 - 5.8 (High)</option>
+  </select>
+
+  <select class="input100" name="esr" required>
+    <option value="">ESR</option>
+    <option value="5-20">5 - 20 (Normal)</option>
+    <option value="21-40">21 - 40 (Moderate)</option>
+    <option value="41-65">41 - 65 (High)</option>
+  </select>
+
+  <select class="input100" name="crp" required>
     <option value="">CRP</option>
-    <option value="normal">Normal</option>
-    <option value="high">High</option>
+    <option value="Normal">Normal</option>
+    <option value="High">High</option>
   </select>
 
-  <select class="input100" name="dengue">
+  <select class="input100" name="dengue" required>
     <option value="">Dengue NS1</option>
-    <option value="positive">Positive</option>
-    <option value="negative">Negative</option>
+    <option value="Positive">Positive</option>
+    <option value="Negative">Negative</option>
   </select>
 
-  <select class="input100" name="malaria">
+  <select class="input100" name="malaria" required>
     <option value="">Malaria Parasite</option>
-    <option value="positive">Positive</option>
-    <option value="negative">Negative</option>
+    <option value="Positive">Positive</option>
+    <option value="Negative">Negative</option>
   </select>
 
-  <select class="input100" name="widal">
+  <select class="input100" name="widal" required>
     <option value="">Widal Test</option>
-    <option value="positive">Positive</option>
-    <option value="negative">Negative</option>
+    <option value="Positive">Positive</option>
+    <option value="Negative">Negative</option>
   </select>
+
 </div>
     <button type="submit" class="btn">Predict Disease</button>
 
@@ -246,20 +368,13 @@ function handleSymptomSelect() {
   const value = select.value;
   const box = document.getElementById("symptoms");
 
-  document.getElementById("feverBox").style.display = "none";
-  document.getElementById("bloodBox").style.display = "none";
-  document.getElementById("mode").value = "";
+  if (value === "blood sample") {
+      window.location.href = "{% url 'blood_input' %}";
+      return;
+  }
 
-  if (value === "fever") {
-    document.getElementById("feverBox").style.display = "block";
-    document.getElementById("mode").value = "fever";
-  }
-  else if (value === "blood sample") {
-    document.getElementById("bloodBox").style.display = "block";
-    document.getElementById("mode").value = "blood";
-  }
-  else if (value !== "") {
-    box.value += box.value ? ", " + value : value;
+  if (value !== "") {
+      box.value += box.value ? ", " + value : value;
   }
 
   select.selectedIndex = 0;

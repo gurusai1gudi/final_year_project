@@ -134,16 +134,62 @@
     <!-- 🩸 BLOOD SAMPLE MODEL OUTPUT -->
 
     {% if mode == "blood" %}
-        <h3>🩸 Blood Sample Diagnosis</h3>
-        <p class="lead text-dark"><strong>{{ predicted_disease }}</strong></p>
+    <h3>🩸 Blood Sample Diagnosis</h3>
+    <p class="lead text-dark"><strong>{{ predicted_disease }}</strong></p>
 
-        <h4>📖 Description</h4>
-        <p>{{ description }}</p>
+    <h4>📖 Detailed Description</h4>
+    <ul>
+        {% for line in description %}
+            <li>{{ line }}</li>
+        {% endfor %}
+    </ul>
 
-        <div class="alert alert-danger mt-3">
-            <strong>Warning:</strong> This prediction is based on laboratory blood parameters.
-        </div>
-    {% endif %}
+    <h4>🧬 Causes</h4>
+    <ul>
+        {% for c in cause %}
+            <li>{{ c }}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>💉 Treatment Plan</h4>
+    <ul>
+        {% for t in treatment %}
+            <li>{{ t }}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>💊 Suggested Medicines</h4>
+    <ul>
+        {% for m in medicines %}
+            <li>{{ m }}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>🥗 Recommended Diet</h4>
+    <ul>
+        {% for d in diet %}
+            <li>{{ d }}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>🏃 Recommended Workout</h4>
+    <ul>
+        {% for w in workout %}
+            <li>{{ w }}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>⚠️ Precautions</h4>
+    <ul>
+        {% for p in precautions %}
+            <li>{{ p }}</li>
+        {% endfor %}
+    </ul>
+
+    <div class="alert alert-danger mt-3">
+        <strong>Note:</strong> This prediction is based on laboratory blood parameters.
+    </div>
+{% endif %}
 
     <!-- ================= FOOTER BUTTONS ================= -->
     <div class="text-center mt-4">

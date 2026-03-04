@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Blood Sample Details</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet">
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    .bgded {
+  background-image: url("{% static 'images/medicine_img.jpg' %}");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+    form {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border-radius: 15px;
+      width: 450px;
+      max-width: 95%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    }
+
+    .input100 {
+      width: 100%;
+      height: 38px;
+      padding: 8px 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 15px;
+      background: #f1f5f9;
+      box-sizing: border-box;
+    }
+
+    .btn {
+      background: #2563eb;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    h2 {
+      color: white;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+<div class="bgded">
+
+<form action="{% url 'output' %}" method="post">
+{% csrf_token %}
+
+<!-- IMPORTANT: this tells backend it's blood mode -->
+<input type="hidden" name="mode" value="blood">
+
+<h2>Blood Sample Details</h2>
+    <input class="input100" type="number" name="age" placeholder="Age" required>
+
+<select class="input100" name="gender" required>
+  <option value="">Select Gender</option>
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+</select>
+
+<select class="input100" name="fever" required>
+  <option value="">Fever</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
+
+<select class="input100" name="temperature" required>
+  <option value="">Temperature (°C)</option>
+  <option value="36.5-37.5">36.5 - 37.5 (Normal)</option>
+  <option value="37.6-38.5">37.6 - 38.5 (Mild Fever)</option>
+  <option value="38.6-39.5">38.6 - 39.5 (High Fever)</option>
+  <option value="39.6-41.0">39.6 - 41.0 (Very High)</option>
+</select>
+
+<select class="input100" name="pulse" required>
+  <option value="">Pulse</option>
+  <option value="60-70">60 - 70 (Low)</option>
+  <option value="70-80">70 - 80 (Normal)</option>
+  <option value="80-90">80 - 90 (High)</option>
+</select>
+
+<select class="input100" name="bp_sys" required>
+  <option value="">BP Systolic</option>
+  <option value="110-120">110 - 120 (Normal)</option>
+  <option value="121-130">121 - 130 (High)</option>
+</select>
+
+<select class="input100" name="bp_dia" required>
+  <option value="">BP Diastolic</option>
+  <option value="70-75">70 - 75 (Normal)</option>
+  <option value="76-85">76 - 85 (High)</option>
+</select>
+
+<select class="input100" name="spo2" required>
+  <option value="">SpO2</option>
+  <option value="96-97">96 - 97 (Normal)</option>
+  <option value="98-100">98 - 100 (Good)</option>
+</select>
+
+<select class="input100" name="hemoglobin" required>
+  <option value="">Hemoglobin</option>
+  <option value="6.5-9">6.5 - 9 (Low)</option>
+  <option value="9-12">9 - 12 (Medium)</option>
+  <option value="12-15.5">12 - 15.5 (Normal)</option>
+</select>
+
+<select class="input100" name="wbc" required>
+  <option value="">WBC</option>
+  <option value="3000-6000">3000 - 6000 (Low)</option>
+  <option value="6001-12000">6001 - 12000 (Normal)</option>
+  <option value="12001-17999">12001 - 17999 (High)</option>
+</select>
+
+<select class="input100" name="platelets" required>
+  <option value="">Platelets</option>
+  <option value="30052-100000">30052 - 100000 (Low)</option>
+  <option value="100001-250000">100001 - 250000 (Normal)</option>
+  <option value="250001-349978">250001 - 349978 (High)</option>
+</select>
+
+<select class="input100" name="rbc" required>
+  <option value="">RBC</option>
+  <option value="2.8-4">2.8 - 4 (Low)</option>
+  <option value="4.1-5">4.1 - 5 (Normal)</option>
+  <option value="5.1-5.8">5.1 - 5.8 (High)</option>
+</select>
+
+<select class="input100" name="esr" required>
+  <option value="">ESR</option>
+  <option value="5-20">5 - 20 (Normal)</option>
+  <option value="21-40">21 - 40 (Moderate)</option>
+  <option value="41-65">41 - 65 (High)</option>
+</select>
+
+<select class="input100" name="crp" required>
+  <option value="">CRP</option>
+  <option value="Normal">Normal</option>
+  <option value="High">High</option>
+</select>
+
+<select class="input100" name="dengue" required>
+  <option value="">Dengue NS1</option>
+  <option value="Positive">Positive</option>
+  <option value="Negative">Negative</option>
+</select>
+
+<select class="input100" name="malaria" required>
+  <option value="">Malaria Parasite</option>
+  <option value="Positive">Positive</option>
+  <option value="Negative">Negative</option>
+</select>
+
+<select class="input100" name="widal" required>
+  <option value="">Widal Test</option>
+  <option value="Positive">Positive</option>
+  <option value="Negative">Negative</option>
+</select>
+
+<button type="submit" class="btn">Predict Disease</button>
+
+</form>
+</div>
+</body>
+</html>

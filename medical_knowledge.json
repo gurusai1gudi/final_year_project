@@ -1,0 +1,380 @@
+{
+"Anemia": {
+        "first_disease": "Iron Deficiency Anemia",
+
+        "detailed_description": [
+            "Anemia is a condition in which the body does not have enough healthy red blood cells.",
+            "Red blood cells are responsible for carrying oxygen to body tissues.",
+            "Low hemoglobin levels reduce oxygen supply to organs.",
+            "Common symptoms include fatigue, weakness, pale skin, and shortness of breath."
+        ],
+
+        "cause": [
+            "Iron deficiency due to poor diet.",
+            "Chronic blood loss (ulcers, menstruation).",
+            "Vitamin B12 or folic acid deficiency.",
+            "Bone marrow disorders (rare cases)."
+        ],
+
+        "treatment": [
+            "Identify and treat underlying cause.",
+            "Iron supplementation therapy for 3–6 months.",
+            "Vitamin B12 injections if deficient.",
+            "Severe cases may require blood transfusion."
+        ],
+
+        "medicines": [
+            "Ferrous Sulfate tablets (oral iron)",
+            "Vitamin B12 supplements",
+            "Folic Acid tablets"
+        ],
+
+        "diet": [
+            "Green leafy vegetables (Spinach)",
+            "Beetroot and carrots",
+            "Red meat and liver",
+            "Dates and raisins",
+            "Iron-fortified cereals"
+        ],
+
+        "workout": [
+            "Light walking daily",
+            "Breathing exercises",
+            "Avoid heavy workouts until Hb normalizes"
+        ],
+
+        "monitoring": [
+            "CBC test every 4 weeks",
+            "Monitor hemoglobin levels",
+            "Check iron profile if needed"
+        ],
+
+        "possible_complications": [
+            "Heart strain due to low oxygen",
+            "Extreme fatigue",
+            "Pregnancy complications"
+        ],
+
+        "precautions": [
+            "Do not skip iron medication",
+            "Avoid tea/coffee after iron intake",
+            "Maintain iron-rich diet"
+        ]
+    },
+
+
+    "Malaria": {
+        "first_disease": "Plasmodium Malaria Infection",
+
+        "detailed_description": [
+            "Malaria is a parasitic infection transmitted by female Anopheles mosquito.",
+            "It infects red blood cells and causes periodic fever spikes.",
+            "Symptoms include chills, sweating, headache, and body pain."
+        ],
+
+        "cause": [
+            "Mosquito bite carrying Plasmodium parasite.",
+            "Living in malaria-endemic regions.",
+            "Poor sanitation and stagnant water."
+        ],
+
+        "treatment": [
+            "Immediate antimalarial therapy.",
+            "Control high fever.",
+            "Hospitalization in severe cases."
+        ],
+
+        "medicines": [
+            "Artemisinin Combination Therapy (ACT)",
+            "Chloroquine (if sensitive region)",
+            "Primaquine"
+        ],
+
+        "diet": [
+            "High fluid intake",
+            "Coconut water",
+            "Light easily digestible meals",
+            "Vitamin C rich fruits"
+        ],
+
+        "workout": [
+            "Strict bed rest during fever phase",
+            "Gradual return to activity after recovery"
+        ],
+
+        "monitoring": [
+            "Monitor platelet count",
+            "Check hemoglobin levels",
+            "Repeat malaria parasite test if needed"
+        ],
+
+        "possible_complications": [
+            "Severe anemia",
+            "Cerebral malaria",
+            "Organ failure (rare but serious)"
+        ],
+
+        "precautions": [
+            "Use mosquito nets",
+            "Avoid stagnant water",
+            "Complete full medication course"
+        ]
+    },
+
+
+    "Dengue": {
+        "first_disease": "Dengue Viral Fever",
+
+        "detailed_description": [
+            "Dengue is a viral infection transmitted by Aedes mosquito.",
+            "It causes high fever, severe body pain, and low platelet count.",
+            "Severe cases may lead to bleeding complications."
+        ],
+
+        "cause": [
+            "Aedes mosquito bite.",
+            "Stagnant clean water near home.",
+            "Lack of mosquito protection."
+        ],
+
+        "treatment": [
+            "Supportive treatment only (no specific antiviral).",
+            "Maintain hydration.",
+            "Monitor platelet levels regularly."
+        ],
+
+        "medicines": [
+            "Paracetamol for fever",
+            "IV fluids (if dehydration severe)"
+        ],
+
+        "diet": [
+            "Papaya leaf extract",
+            "Pomegranate juice",
+            "Coconut water",
+            "Protein-rich light foods"
+        ],
+
+        "workout": [
+            "Strict bed rest",
+            "Avoid physical exertion"
+        ],
+
+        "monitoring": [
+            "Daily platelet count",
+            "Monitor bleeding signs",
+            "Blood pressure monitoring"
+        ],
+
+        "possible_complications": [
+            "Severe bleeding",
+            "Shock (Dengue Hemorrhagic Fever)",
+            "Organ damage"
+        ],
+
+        "precautions": [
+            "Avoid NSAIDs like ibuprofen",
+            "Prevent mosquito breeding",
+            "Use full-sleeve clothes"
+        ]
+    },
+
+  "Viral Fever": {
+    "first_disease": "Acute Viral Infection",
+
+    "detailed_description": [
+        "Viral fever is caused by viral infections affecting the body.",
+        "It usually presents with fever, fatigue, headache, and body pain.",
+        "Most viral fevers resolve within 3 to 7 days."
+    ],
+
+    "cause": [
+        "Respiratory viral infections.",
+        "Seasonal viral outbreaks.",
+        "Weak immune system."
+    ],
+
+    "treatment": [
+        "Rest and hydration.",
+        "Paracetamol for fever control.",
+        "Monitor symptoms."
+    ],
+
+    "medicines": [
+        "Paracetamol",
+        "Antiviral medications (if prescribed)"
+    ],
+
+    "diet": [
+        "Warm soups",
+        "Fruit juices",
+        "High fluid intake"
+    ],
+
+    "workout": [
+        "Complete rest until recovery"
+    ],
+
+    "monitoring": [
+        "Monitor temperature daily"
+    ],
+
+    "possible_complications": [
+        "Dehydration",
+        "Secondary infection"
+    ],
+
+    "precautions": [
+        "Maintain hygiene",
+        "Avoid close contact with infected individuals"
+    ]
+},
+
+  "Bacterial Infection": {
+    "first_disease": "Systemic Bacterial Infection",
+
+    "detailed_description": [
+        "Bacterial infections are caused by harmful bacteria entering the body.",
+        "Symptoms may include fever, inflammation, and localized pain."
+    ],
+
+    "cause": [
+        "Poor hygiene",
+        "Contaminated food or water",
+        "Open wounds"
+    ],
+
+    "treatment": [
+        "Antibiotic therapy",
+        "Supportive care"
+    ],
+
+    "medicines": [
+        "Amoxicillin",
+        "Azithromycin"
+    ],
+
+    "diet": [
+        "Light meals",
+        "Probiotic yogurt"
+    ],
+
+    "workout": [
+        "Rest until infection clears"
+    ],
+
+    "monitoring": [
+        "Monitor fever",
+        "Follow-up after antibiotics"
+    ],
+
+    "possible_complications": [
+        "Sepsis (if untreated)"
+    ],
+
+    "precautions": [
+        "Complete full antibiotic course",
+        "Maintain cleanliness"
+    ]
+},
+
+
+  "Typhoid": {
+    "first_disease": "Typhoid Fever (Salmonella Infection)",
+
+    "detailed_description": [
+        "Typhoid is caused by Salmonella bacteria.",
+        "It spreads through contaminated food and water.",
+        "Symptoms include prolonged fever, abdominal pain, and weakness."
+    ],
+
+    "cause": [
+        "Contaminated food or water",
+        "Poor sanitation"
+    ],
+
+    "treatment": [
+        "Antibiotic treatment",
+        "Hydration therapy"
+    ],
+
+    "medicines": [
+        "Ciprofloxacin",
+        "Azithromycin"
+    ],
+
+    "diet": [
+        "Soft diet",
+        "Boiled vegetables",
+        "Plenty of fluids"
+    ],
+
+    "workout": [
+        "Strict bed rest"
+    ],
+
+    "monitoring": [
+        "Monitor temperature",
+        "Repeat Widal test if required"
+    ],
+
+    "possible_complications": [
+        "Intestinal perforation",
+        "Severe dehydration"
+    ],
+
+    "precautions": [
+        "Drink boiled water",
+        "Maintain food hygiene"
+    ]
+},
+
+    "Normal": {
+        "first_disease": "Healthy Blood Report",
+
+        "detailed_description": [
+            "All blood parameters are within normal reference range.",
+            "No signs of infection or deficiency detected."
+        ],
+
+        "cause": [
+            "Balanced diet",
+            "Healthy immune system",
+            "Proper hydration"
+        ],
+
+        "treatment": [
+            "No treatment required."
+        ],
+
+        "medicines": [
+            "None required"
+        ],
+
+        "diet": [
+            "Balanced diet",
+            "Regular hydration",
+            "Maintain protein intake"
+        ],
+
+        "workout": [
+            "Daily exercise",
+            "Cardio and strength training"
+        ],
+
+        "monitoring": [
+            "Annual health check-up"
+        ],
+
+        "possible_complications": [
+            "None"
+        ],
+
+        "precautions": [
+            "Maintain healthy lifestyle",
+            "Avoid junk food"
+        ]
+    }
+
+}
+
